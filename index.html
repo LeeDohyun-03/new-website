@@ -1,0 +1,179 @@
+ /* 배경 이미지 및 따뜻한 그라데이션 오버레이 */
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 0.8s ease;
+    }
+    .bg-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 107, 129, 0.45) 0%, rgba(43, 30, 45, 0.75) 100%);
+        backdrop-filter: blur(4px);
+    }
+
+    /* 페이지 공통 스타일 */
+    .page {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        z-index: 5;
+    }
+    .page.hidden {
+        opacity: 0;
+        transform: translateY(30px);
+        pointer-events: none;
+    }
+
+    /* 첫 번째 페이지 스타일 */
+    .welcome-card {
+        text-align: center;
+        z-index: 10;
+    }
+    .bubble-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.3rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 8px;
+        letter-spacing: -1px;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .bubble-sub {
+        font-size: 1.1rem;
+        color: #ffccd5;
+        margin-bottom: 40px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* 커지는 버튼 애니메이션 */
+    .pulse-btn {
+        background: rgba(255, 255, 255, 0.9);
+        color: #d64045;
+        border: none;
+        padding: 18px 36px;
+        font-size: 1.25rem;
+        font-weight: 700;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        animation: pulseEffect 2s infinite ease-in-out;
+        font-family: 'Montserrat', 'Gowun Dodum', sans-serif;
+    }
+    @keyframes pulseEffect {
+        0% { transform: scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        50% { transform: scale(1.08); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+        100% { transform: scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+    }
+
+    /* 두 번째 페이지 (초대장 본문) 스타일 */
+    .invitation-card {
+        background: rgba(255, 255, 255, 0.88);
+        border-radius: 24px;
+        padding: 35px 25px;
+        width: 90%;
+        max-width: 360px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        text-align: center;
+        z-index: 10;
+        color: #333;
+    }
+    .main-heading {
+        font-size: 1.35rem;
+        font-weight: bold;
+        color: #d64045;
+        margin-bottom: 30px;
+        letter-spacing: -0.5px;
+    }
+    .info-row {
+        margin-bottom: 20px;
+        font-size: 1.05rem;
+        line-height: 1.5;
+        color: #555;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .info-label {
+        font-weight: bold;
+        color: #ff6b81;
+    }
+    .map-link {
+        color: #2b6cb0;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+    .footer-text {
+        margin-top: 35px;
+        font-size: 0.9rem;
+        color: #888;
+        letter-spacing: 1px;
+    }
+</style>
+
+
+<div class="phone-container">
+    <!-- 첫 번째 페이지 배경: 그림자 사진 (image_7ec200.jpg) -->
+    <div id="bg1" class="bg-image" style="background-image: url('image_7ec200.jpg');"></div>
+    
+    <!-- 두 번째 페이지 배경: 브이 포즈 사진 (image_7ec207.jpg) -->
+    <div id="bg2" class="bg-image" style="background-image: url('image_7ec207.jpg'); opacity: 0;"></div>
+    
+    <div class="bg-overlay"></div>
+
+    <!-- 페이지 1: 첫 화면 (버튼) -->
+    <div id="page1" class="page">
+        <div class="welcome-card">
+            <div class="bubble-title">HAPPY<br>BIRTHDAY<br>JISOO</div>
+            <div class="bubble-sub">✨ 특별한 날의 초대장이 도착했어요 ✨</div>
+            <button class="pulse-btn" onclick="nextPage()">초대장 열어보기 💌</button>
+        </div>
+    </div>
+
+    <!-- 페이지 2: 초대장 상세 내용 -->
+    <div id="page2" class="page hidden">
+        <div class="invitation-card">
+            <div class="main-heading">💛 지수의 23번째 생일을 축하해 💛</div>
+            
+            <div class="info-row">
+                <span class="info-label">⏰ 시간 :</span> 18:00
+            </div>
+            
+            <div class="info-row">
+                <span class="info-label">📍 장소 :</span> 
+                <a href="https://map.naver.com/v5/entry/place/7801102980094506345" target="_blank" class="map-link">도우룸 서래마을</a>
+            </div>
+            
+            <div class="info-row">
+                <span class="info-label">📞 연락처 :</span> 010-2722-5260
+            </div>
+
+            <div class="footer-text">이따 만나요!</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function nextPage() {
+        document.getElementById('page1').classList.add('hidden');
+        document.getElementById('page2').classList.remove('hidden');
+        
+        // 페이지 넘어갈 때 배경 사진 전환
+        document.getElementById('bg1').style.opacity = '0';
+        document.getElementById('bg2').style.opacity = '1';
+    }
+</script>
